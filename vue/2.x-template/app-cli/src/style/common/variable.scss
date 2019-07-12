@@ -1,0 +1,9 @@
+
+@mixin clear_float {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: ".";
+	clear: both;
+	height: 0;
+}
