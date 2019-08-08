@@ -5,8 +5,10 @@
 *参数（number || string）
 */
 
-export const _int = function() {
-
+export const _int = function( p ) {
+	if(typeof p === 'number') {
+		(/^[]/)
+	}
 }
 
 
