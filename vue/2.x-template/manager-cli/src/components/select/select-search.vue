@@ -5,6 +5,7 @@
       :titleObj='_obj'
     ></condition-title-component>
     <el-select 
+      v-if='!_obj.valueConponentHide'
       v-model="_obj.value"
       @change='$emit("valueChange", _obj, $event)' 
       filterable

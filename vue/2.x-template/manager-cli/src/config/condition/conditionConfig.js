@@ -21,5 +21,6 @@ export const select-search-component = {
 			required: true, 
 		  clear: true,
 		  disabled: false,
-		  show: false
+		  show: false,
+		  valueConponentHide: false
 }
