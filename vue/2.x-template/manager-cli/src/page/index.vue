@@ -7,6 +7,7 @@
           :options= '_options'
           @valueChange= 'valueChange'
         ></components>
+        <p>{{xxx}}</p>
     </div>
   </template>
   <script>
@@ -52,6 +53,11 @@ export default {
     valueChange(obj) {
       console.log(obj)
     }
+  },
+  computed: {
+    ...mapState({
+      xxx: state => state.xxx
+    })
   }
 };
 </script>
