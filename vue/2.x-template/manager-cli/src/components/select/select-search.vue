@@ -1,16 +1,17 @@
 <template>
   <div class="select-search-component" 
-    v-show='!_obj.show'>
+    v-show='!_obj.config.show'> 
     <condition-title-component
       :titleObj='_obj'
     ></condition-title-component>
     <el-select 
-      v-if='!_obj.valueConponentHide'
+      :style='{width:_obj.config.v_wd}'
+      v-if='!_obj.config.valueConponentHide'
       v-model="_obj.value"
       @change='$emit("valueChange", _obj, $event)' 
       filterable
-      :disabled='_obj.disabled'
-      :clearable='_obj.clear' 
+      :disabled='_obj.config.disabled'
+      :clearable='_obj.config.clear' 
       :placeholder="_obj.placeholder">
       <el-option
         v-for="item in list"
@@ -48,3 +49,9 @@
     }
   }
 </script>
+
+<style lang='scss'>
+.select-search-component {
+  margin: 10px 0;
+}
+</style>
