@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import * as routerList from '@/config/router/router'
+import routerList from '@/config/routerList'
 import store from '../store/store'
 
 Vue.use(Router)

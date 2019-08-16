@@ -1,5 +1,5 @@
 <template>
-  <div :class='["select-search-component", _obj.type]' 
+  <div :class='["select-search-multiple-component", _obj.type]' 
     v-show='!_obj.config.show'> 
     <condition-title-component
       :titleObj='_obj'
@@ -10,6 +10,7 @@
       v-model="_obj.value"
       @change='$emit("valueChange", _obj, $event)' 
       filterable
+      :multiple= '_obj.config.multiple'
       :disabled='_obj.config.disabled'
       :clearable='_obj.config.clear' 
       :placeholder="_obj.placeholder">
@@ -26,7 +27,7 @@
 
 <script>
   export default {
-    name: 'selectSearchComponent',
+    name: 'selectSearchMultipleComponent',
     props:{
       options: {
         type: Object,
@@ -51,7 +52,7 @@
 </script>
 
 <style lang='scss'>
-.select-search-component {
+.select-search-multiple-component {
   margin: 10px 0;
 }
 </style>

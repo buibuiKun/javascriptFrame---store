@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/store'
+import http from '@/http/http'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
@@ -11,6 +12,7 @@ import { global_component } from '@/components/installComponents.js'
 Vue.use(global_component)
 
 Vue.config.productionTip = false
+Vue.prototype.http = http
 
 /* eslint-disable no-new */
 new Vue({
