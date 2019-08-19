@@ -6,6 +6,7 @@
           :key= 'index'
           :options= '_options'
           @valueChange= 'valueChange'
+          @searcForRemote= 'remoteSearch'
         ></components>
         <p>{{xxx}}</p>
     </div>
@@ -52,23 +53,7 @@
     },
     created() {
       this.init()
-    },
-    methods: {
-      init() {
-        setTimeout(() => {
-          this.condition.dateCycle.list = [{
-                  value: 123,
-                  label: '测试5'
-                },{
-                  value: 333,
-                  label: '测试6'
-              }]
-          this.condition.dateCycle.config.required = false
-        },3000)
-      },
-      valueChange(obj) {
-        console.log(obj)
-      }
+      
     },
     computed: {
       ...mapState({
@@ -78,7 +63,62 @@
           return state._pageMsg.condition[key]
         })
       })
-    }
+    },
+    methods: {
+      init() {
+        this.http.get('/learn/user/getInfo',{
+          name: '李翔'
+        }).then((response, error) => {
+          // console.log(response, error,'response, error')
+          if(response.data && response.data.length > 0) {
+            this.condition.dateCycle.list = response.data.map((item, index) => {
+              return {
+                label: item.name,
+                value: index,
+                disabled: false
+              }
+            })
+            this.condition.cityGroup.list = [{
+              label: '广东省',
+              options:[{
+                label: '肇庆',
+                value: '1'
+              },{
+                label: '云浮',
+                value: '2'
+              }]
+            }]
+            this.condition.cityMulti.list = [{
+                label: '肇庆',
+                value: '1'
+              },{
+                label: '云浮',
+                value: '2'
+            }]
+          }
+        })
+      },
+      valueChange(obj) {
+        console.log(obj,'change')
+      },
+      remoteSearch(query, obj) {
+        this.http.get('/learn/user/getInfo',{
+          name: query
+        }).then((response, error) => {
+          obj.config.loading = false;
+          if(response.data && response.data.length > 0) {
+            obj.list = response.data.map((item, index) => {
+              return {
+                label: item.name,
+                value: index,
+                disabled: false
+              }
+            })
+          }
+        })
+      }
+    },
+    
 };
 </script>
 <style>

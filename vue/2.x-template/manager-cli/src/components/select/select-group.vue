@@ -1,5 +1,5 @@
 <template>
-  <div :class='["select-search-component", _obj.type]' 
+  <div :class='["select-group-component", _obj.type]'
     v-show='!_obj.config.show'> 
     <condition-title-component
       :titleObj='_obj'
@@ -13,20 +13,25 @@
       :disabled='_obj.config.disabled'
       :clearable='_obj.config.clear' 
       :placeholder="_obj.placeholder">
-      <el-option
-        v-for="item in list"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-        :disabled='item.disabled'>
-      </el-option>
+      <el-option-group
+        v-for="group in list"
+        :key="group.label"
+        :label="group.label">
+        <el-option
+          v-for="item in group.options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+          :disabled='item.disabled'>
+        </el-option>
+      </el-option-group>
     </el-select>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'selectSearchComponent',
+    name: 'selectGroupComponent',
     props:{
       options: {
         type: Object,

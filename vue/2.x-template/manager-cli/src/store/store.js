@@ -1,7 +1,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import pageConfig from '@/config/pages/pageConfig'
+import pageConfig from '@/config/modules/.x1/pages/pageConfig'
 
 Vue.use(Vuex)
 

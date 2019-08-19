@@ -1,5 +1,5 @@
 <template>
-  <div :class='["select-search-component", _obj.type]' 
+  <div :class='["select-remote-search-component", _obj.type]' 
     v-show='!_obj.config.show'> 
     <condition-title-component
       :titleObj='_obj'
@@ -9,7 +9,11 @@
       v-if='!_obj.config.valueConponentHide'
       v-model="_obj.value"
       @change='$emit("valueChange", _obj, $event)' 
+      multiple
       filterable
+      remote
+      :remote-method="remoteMethod"
+      :loading="_obj.config.loading"
       :disabled='_obj.config.disabled'
       :clearable='_obj.config.clear' 
       :placeholder="_obj.placeholder">
@@ -26,7 +30,7 @@
 
 <script>
   export default {
-    name: 'selectSearchComponent',
+    name: 'selectRemoteSearchComponent',
     props:{
       options: {
         type: Object,
@@ -40,18 +44,34 @@
       }
     },
     computed: {
-      list() {
-        return this.options ? this.options.list : []
+      list: {
+        get() {
+          return this.options ? this.options.list : []
+        },
+        set(currentList) {
+          this.options.list = currentList
+        }
       },
       _obj() {
         return this.options ? this.options : {}
+      }
+    },
+    methods: {
+      //远程查询
+      remoteMethod(query) {
+        if (query !== '') {
+          this._obj.config.loading = true;
+          this.$emit('searcForRemote', query, this._obj)
+        } else {
+          this.list = [];
+        }
       }
     }
   }
 </script>
 
 <style lang='scss'>
-.select-search-component {
+.select-remote-search-component {
   margin: 10px 0;
 }
 </style>
