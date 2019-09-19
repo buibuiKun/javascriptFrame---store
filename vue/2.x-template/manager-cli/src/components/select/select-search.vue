@@ -2,13 +2,16 @@
   <div :class='["select-search-component", _obj.type]' 
     v-show='!_obj.config.show'> 
     <condition-title-component
+      v-if='!_obj.config.titleHide'
       :titleObj='_obj'
     ></condition-title-component>
     <el-select 
+      :class="{'is-error': _obj.config.ruleError}"
       :style='{width:_obj.config.v_wd}'
       v-if='!_obj.config.valueConponentHide'
-      v-model="_obj.value"
-      @change='$emit("valueChange", _obj, $event)' 
+      v-model.trim="_obj.value"
+      @change='change(_obj, $event)'
+      @blur='blur(_obj, $event)' 
       filterable
       :disabled='_obj.config.disabled'
       :clearable='_obj.config.clear' 
@@ -21,6 +24,11 @@
         :disabled='item.disabled'>
       </el-option>
     </el-select>
+    <form-ruler-error
+      v-if='_obj.config.ruleError'
+      :style="{left: _obj.config.t_wd}"
+      :options='_obj'>
+    </form-ruler-error>
   </div>
 </template>
 
@@ -46,12 +54,29 @@
       _obj() {
         return this.options ? this.options : {}
       }
+    },
+    methods: {
+      blur(obj, event) {
+        this.utils.conditionRulerTest(obj)
+        this.$emit("onbluer",obj, event)
+      },
+      change(obj, event) {
+        this.utils.conditionRulerTest(obj)
+        this.$emit("valueChange", obj, event)
+      }
     }
   }
 </script>
 
 <style lang='scss'>
 .select-search-component {
+  display: inline-block;
+  position: relative;
   margin: 10px 0;
+  .is-error {
+    .el-input__inner {
+      border-color: #f56c6c;
+    }
+  }
 }
 </style>

@@ -1,8 +1,10 @@
 <template>
 	<div class='condition-title-component' 
 			:style="{width: _obj.config.t_wd}"> 
-      <i class='_required' v-if='_obj.config.required'>*</i>
-      <span class='_title' v-text='_obj.title'></span> 
+      <span class='_title'>
+				<span class='_required' v-if='_obj.config.required'>*</span>
+				<span v-text='_obj.title'></span>
+      </span> 
     </div>
 </template>
 
@@ -30,8 +32,7 @@ export default {
 	display: inline-block;
 	line-height: 40px;
 	._required {
-		display: inline-block;
-		width: 15px;
+		color: red;
 	}
 }
 </style>

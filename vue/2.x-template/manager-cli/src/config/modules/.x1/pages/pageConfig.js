@@ -7,21 +7,28 @@ let {
 	dateCycle,
 	cityGroup,
 	cityMulti,
-	cityRemote
+	cityRemote,
+	myName,
+	textareaText
 
 } = condition
 
 
 //首页路由
-const  index = {
+const  demo = {
 		condition: {
 			dateCycle,
 			cityGroup,
 			cityMulti,
-			cityRemote
+			cityRemote,
+			myName,
+			textareaText
 		}
 } 
 
+
+
+
 export default {
-	[routerCofig.INDEX]: index
+	[routerCofig.DEMO]: demo
 }

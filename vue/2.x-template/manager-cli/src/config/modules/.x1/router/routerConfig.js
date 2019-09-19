@@ -1,6 +1,6 @@
 
 //首页
-export const INDEX = 'index'
+export const DEMO = 'demo'
 
 //个人信息
 export const USERINFO = 'userInfo'
