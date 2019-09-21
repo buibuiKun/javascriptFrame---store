@@ -9,7 +9,9 @@
  * t_wd: 标题宽度
  * v_wd: 值得宽度
  * multiple: 下拉选择框多选
- * 
+ * ruleError 校验是否出错
+ * errorMessage 校验显示的信息
+ * maxlength 限制文本长度
  *
  *
  */
@@ -19,9 +21,12 @@ const config = {
   clear: true,
   disabled: false,
   show: false,
+  titleHide: false,
   valueConponentHide: false,
   t_wd: '100px',
   v_wd: '230px',
+  ruleError: false,
+  errorMessage: ''
 }
 
 
@@ -89,4 +94,31 @@ export const select_group_component = {
 		config: {
 			...config,
 		}
+}
+
+/**
+ *常规input 输入框
+ * 
+ */
+export const input_component = {
+	component: 'input-component',
+  value: '',
+	config: {
+		...config,
+	}
+}
+
+
+/**
+ *常规textarea-input 文本输入框
+ *maxlength 限制文本长度
+ * 
+ */
+export const textarea_maxlength_component = {
+	component: 'textarea-maxlength-component',
+  value: '',
+	config: {
+		...config,
+		maxlength: 256,
+	}
 }

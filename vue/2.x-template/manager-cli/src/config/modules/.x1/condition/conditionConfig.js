@@ -28,3 +28,17 @@ export const cityRemote = {
   placeholder: '请输入城市远程查询',
 	...component.select_remote_search_component,
 }
+
+export const myName = {
+	type: 'myName',
+  title: '名字',
+  placeholder: '请输入名字',
+	...component.input_component,
+}
+
+export const textareaText = {
+	type: 'textareaText',
+  title: '文本输入框',
+  placeholder: '请输入文本',
+	...component.textarea_maxlength_component,
+}

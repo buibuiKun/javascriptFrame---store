@@ -1,15 +1,15 @@
 import * as routerList from './routerConfig'
 
-import Index from '@/page/index'
+import Demo from '@/page/demo'
 import UserInfo from '@/page/userInfo/userInfo'
 
 
 
 
-export const index = {
-	path: `/${routerList.INDEX}`,
-	name: routerList.INDEX,
-	component: Index
+export const demo = {
+	path: `/${routerList.DEMO}`,
+	name: routerList.DEMO,
+	component: Demo
 }
 
 export const userInfo = {

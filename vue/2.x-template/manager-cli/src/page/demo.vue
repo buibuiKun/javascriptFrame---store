@@ -73,8 +73,8 @@
           if(response.data && response.data.length > 0) {
             this.condition.dateCycle.list = response.data.map((item, index) => {
               return {
-                label: item.name,
-                value: index,
+                label: item.name + "   ",
+                value: index + 1,
                 disabled: false
               }
             })
@@ -99,7 +99,7 @@
         })
       },
       valueChange(obj) {
-        console.log(obj,'change')
+        // console.log(obj,'change')
       },
       remoteSearch(query, obj) {
         this.http.get('/dev/addUser',{
@@ -125,7 +125,6 @@
         // })
       }
     },
-    
 };
 </script>
 <style>
