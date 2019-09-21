@@ -11,12 +11,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        '/learn': {
+        '/dev': {
             target: 'http://127.0.0.1:1991',
             // target: 'http://172.31.31.196:8080',
             changeOrigin: true,
             pathRewrite: {
-              '^/learn': '/learn'
+              '^/dev': '/dev'
             },
             secure: false
         }

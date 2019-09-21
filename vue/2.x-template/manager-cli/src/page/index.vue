@@ -66,7 +66,7 @@
     },
     methods: {
       init() {
-        this.http.get('/learn/user/getInfo',{
+        this.http.get('/dev/getUser',{
           name: '李翔'
         }).then((response, error) => {
           // console.log(response, error,'response, error')
@@ -102,20 +102,27 @@
         console.log(obj,'change')
       },
       remoteSearch(query, obj) {
-        this.http.get('/learn/user/getInfo',{
-          name: query
-        }).then((response, error) => {
-          obj.config.loading = false;
-          if(response.data && response.data.length > 0) {
-            obj.list = response.data.map((item, index) => {
-              return {
-                label: item.name,
-                value: index,
-                disabled: false
-              }
-            })
-          }
+        this.http.get('/dev/addUser',{
+          name: '李豪',
+          gender: '12345'
+        }).then(({data}) => {
+          console.log(data)
         })
+
+        // this.http.get('/learn/user/getInfo',{
+        //   name: query
+        // }).then((response, error) => {
+        //   obj.config.loading = false;
+        //   if(response.data && response.data.length > 0) {
+        //     obj.list = response.data.map((item, index) => {
+        //       return {
+        //         label: item.name,
+        //         value: index,
+        //         disabled: false
+        //       }
+        //     })
+        //   }
+        // })
       }
     },
     
