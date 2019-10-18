@@ -9,7 +9,7 @@
       type="textarea"
 			:class="{'is-error': _obj.config.ruleError}"
       :style='{width:_obj.config.v_wd}'
-      v-if='!_obj.config.valueConponentHide'
+      v-if='!_obj.config.valueComponentHide'
       v-model.trim="_obj.value"
       :maxlength="_obj.config.maxlength"
       show-word-limit
