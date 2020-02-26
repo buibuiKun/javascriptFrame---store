@@ -21,6 +21,19 @@ new Vue({
   el: '#app',
   router,
   store,
+  beforeCreate() {
+  	console.log('根实例', 'beforeCreate','$el--', this.$el,this.$store.state.xxx,'store', this.$route.path)
+  	console.log('根实例', 'beforeCreate', '$el--',this.$el)
+  },
+  created() {
+  	console.log('根实例', 'created', '$el--', this.$el)
+  },
+  beforeMount() {
+  	console.log('根实例', 'beforeMount', '$el--', JSON.stringify(this.$el))
+  },
+  mounted() {
+  	console.log('根实例', 'mounted', this.$el)
+  },
   components: { App },
   template: '<App/>'
 })

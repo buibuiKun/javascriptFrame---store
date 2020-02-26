@@ -51,18 +51,9 @@
       //   }],
       }
     },
-    beforeCreate() {
-      console.log('demo组件实例', 'beforeCreate','$el--', this.$el,this.$store.state.xxx,'store', this.$route.path)
-      console.log('demo组件实例', 'beforeCreate', '$el--',this.$el)
-    },
     created() {
-      console.log('demo组件实例', 'created', '$el--', this.$el)
-    },
-    beforeMount() {
-      console.log('demo组件实例', 'beforeMount', '$el--', JSON.stringify(this.$el))
-    },
-    mounted() {
-      console.log('demo组件实例', 'mounted', this.$el)
+      this.init()
+      
     },
     computed: {
       ...mapState({
@@ -82,8 +73,8 @@
           if(response.data && response.data.length > 0) {
             this.condition.dateCycle.list = response.data.map((item, index) => {
               return {
-                label: item.name + "   ",
-                value: index + 1,
+                label: item.name,
+                value: index,
                 disabled: false
               }
             })
@@ -108,7 +99,7 @@
         })
       },
       valueChange(obj) {
-        console.log(123,'change')
+        console.log(obj,'change')
       },
       remoteSearch(query, obj) {
         this.http.get('/dev/addUser',{
@@ -134,6 +125,7 @@
         // })
       }
     },
+    
 };
 </script>
 <style>
