@@ -5,7 +5,7 @@
  * clear ： 当前项是否可可清除项( 出现清除小按钮, 点击可清除当前项 )
  * disabled : 当前项是否可编辑
  * show: 整个条件隐藏
- * valueConponentHide： 隐藏条件值
+ * valueComponentHide 隐藏条件值
  * t_wd: 标题宽度
  * v_wd: 值得宽度
  * multiple: 下拉选择框多选
@@ -22,7 +22,7 @@ const config = {
   disabled: false,
   show: false,
   titleHide: false,
-  valueConponentHide: false,
+  valueComponentHide: false,
   t_wd: '100px',
   v_wd: '230px',
   ruleError: false,

@@ -8,7 +8,7 @@
 		<el-input 
 			:class="{'is-error': _obj.config.ruleError}"
       :style='{width:_obj.config.v_wd}'
-      v-if='!_obj.config.valueConponentHide'
+      v-if='!_obj.config.valueComponentHide'
       v-model.trim="_obj.value"
       @change.native='change(_obj, $event)' 
       @blur='blur(_obj, $event)'
