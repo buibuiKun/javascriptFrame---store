@@ -1,6 +1,6 @@
 <template>
-	  <div :class='{"el-form-item__error": _obj.config.ruleError && _obj.config.required, rulerSlowDown: true}'>
-      {{_obj.config.errorMessage}}
+	  <div :class='{"el-form-item__error": _obj.ruleError && _obj.required, rulerSlowDown: true}'>
+      {{_obj.errorMessage}}
     </div>
 </template>
 

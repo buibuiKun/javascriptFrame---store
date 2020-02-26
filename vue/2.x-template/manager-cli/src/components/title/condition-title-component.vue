@@ -1,9 +1,9 @@
 <template>
 	<div class='condition-title-component' 
-			:style="{width: _obj.config.t_wd}"> 
+			:style="{width: _obj.t_wd + '%'}"> 
       <span class='_title'>
-				<span class='_required' v-if='_obj.config.required'>*</span>
-				<span v-text='_obj.title'></span>
+				<span class='_required' v-if='_obj.required'>*</span>
+				<span v-text='_obj.title' class='title_text'></span>
       </span> 
     </div>
 </template>
@@ -30,9 +30,23 @@ export default {
 <style lang='scss'>
 .condition-title-component {
 	display: inline-block;
-	line-height: 40px;
-	._required {
-		color: red;
+	text-align: left;
+	height: 39px;
+  line-height: 39px;
+	min-height: 39px;
+  overflow: hidden;
+	vertical-align: top;
+	font-size: 12px;
+	background: #f2f2f2;
+	border: 1px solid #ccc;
+	border-top: 0;
+	border-left: 0;
+	box-sizing: border-box;
+	padding: 0 4px;
+	._title {
+		._required {
+			color: red;
+		}
 	}
 }
 </style>

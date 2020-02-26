@@ -1,21 +1,27 @@
 <template>
-	<div :class='["input-component", _obj.type]'
+	<div :class='["date-day-around-component", _obj.type]'
     v-show='!_obj.show'> 
     <condition-title-component
       v-if='!_obj.titleHide'
       :titleObj='_obj'
     ></condition-title-component>
-		<el-input 
-			:class="{'is-error': _obj.ruleError}"
-      :style='{width:_obj.v_wd + "%"}'
+    <el-date-picker
       v-if='!_obj.valueComponentHide'
+      type="daterange"
       v-model.trim="_obj.value"
+      format="yyyy-MM-dd"
+      value-format="yyyy-MM-dd"
+      :class="{'is-error': _obj.ruleError}"
+      :style='{width:_obj.v_wd + "%"}'
       @change.native='change(_obj, $event)' 
       @blur='blur(_obj, $event)'
       :disabled='_obj.disabled'
       :clearable='_obj.clear' 
-      :placeholder="_obj.placeholder ? _obj.placeholder : '请输入' + _obj.title">
-		</el-input>
+      range-separator="至"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
+      :placeholder="_obj.placeholder ? _obj.placeholder : '请选择' + _obj.title">
+    </el-date-picker>
     <form-ruler-error
       v-if='_obj.ruleError'
       :style="{left: _obj.t_wd}"
@@ -26,7 +32,7 @@
 
 <script>
   export default {
-    name: 'inputComponent',
+    name: 'dateDayAroundComponent',
     props:{
       options: {
         type: Object,
@@ -43,7 +49,7 @@
         return this.options ? this.options : {}
       }
     },
-     methods: {
+    methods: {
       blur(obj, event) {
         this.utils.conditionRulerTest(obj)
         this.$emit("onbluer",obj, event)
@@ -57,7 +63,7 @@
 </script>
 
 <style lang='scss'>
-.input-component {
+.date-day-around-component{
   display: inline-block;
   position: relative;
   .is-error {

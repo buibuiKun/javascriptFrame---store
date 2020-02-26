@@ -1,21 +1,24 @@
 <template>
-	<div :class='["input-component", _obj.type]'
+	<div :class='["date-day-time-component", _obj.type]'
     v-show='!_obj.show'> 
     <condition-title-component
       v-if='!_obj.titleHide'
       :titleObj='_obj'
     ></condition-title-component>
-		<el-input 
-			:class="{'is-error': _obj.ruleError}"
-      :style='{width:_obj.v_wd + "%"}'
+    <el-date-picker
       v-if='!_obj.valueComponentHide'
+      type="datetime"
       v-model.trim="_obj.value"
+      format="yyyy-MM-dd HH:mm"
+      value-format="yyyy-MM-dd HH:mm"
       @change.native='change(_obj, $event)' 
       @blur='blur(_obj, $event)'
+      :class="{'is-error': _obj.ruleError}"
+      :style='{width:_obj.v_wd + "%"}'
       :disabled='_obj.disabled'
       :clearable='_obj.clear' 
-      :placeholder="_obj.placeholder ? _obj.placeholder : '请输入' + _obj.title">
-		</el-input>
+      :placeholder="_obj.placeholder ? _obj.placeholder : '请选择' + _obj.title">
+    </el-date-picker>
     <form-ruler-error
       v-if='_obj.ruleError'
       :style="{left: _obj.t_wd}"
@@ -26,7 +29,7 @@
 
 <script>
   export default {
-    name: 'inputComponent',
+    name: 'dateDayTimeComponent',
     props:{
       options: {
         type: Object,
@@ -43,7 +46,7 @@
         return this.options ? this.options : {}
       }
     },
-     methods: {
+    methods: {
       blur(obj, event) {
         this.utils.conditionRulerTest(obj)
         this.$emit("onbluer",obj, event)
@@ -57,7 +60,7 @@
 </script>
 
 <style lang='scss'>
-.input-component {
+.date-day-time-component {
   display: inline-block;
   position: relative;
   .is-error {
