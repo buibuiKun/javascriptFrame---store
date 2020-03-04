@@ -1,21 +1,25 @@
 <template>
-	<div :class='["input-component", _obj.type]'
+  <div :class='["customize-textarea-component", _obj.type]'
     v-show='!_obj.show'> 
-    <condition-title-component
+    <condition-title-var-component
       v-if='!_obj.titleHide'
       :titleObj='_obj'
-    ></condition-title-component>
-		<el-input 
-			:class="{'is-error': _obj.ruleError}"
+    ></condition-title-var-component>
+    <el-input 
+      type="textarea"
+      :class="{'is-error': _obj.ruleError}"
       :style='{width:_obj.v_wd + "%"}'
       v-if='!_obj.valueComponentHide'
       v-model.trim="_obj.value"
-      @change.native='change(_obj, $event)' 
-      @blur='blur(_obj, $event)'
+      :maxlength="_obj.maxlength"
+      show-word-limit
       :disabled='_obj.disabled'
       :clearable='_obj.clear' 
+      @change.native='change(_obj, $event)' 
+      @blur='blur(_obj, $event)'
+      @keyup='textChange'
       :placeholder="_obj.placeholder ? _obj.placeholder : '请输入' + _obj.title">
-		</el-input>
+    </el-input>
     <form-ruler-error
       v-if='_obj.ruleError'
       :style="{left: _obj.t_wd}"
@@ -26,7 +30,7 @@
 
 <script>
   export default {
-    name: 'inputComponent',
+    name: 'customizeTextareaComponent',
     props:{
       options: {
         type: Object,
@@ -36,11 +40,16 @@
       }
     },
     data() {
-      return {}
+      return {
+      }
     },
     computed: {
       _obj() {
-        return this.options ? this.options : {}
+        let op = this.options
+        if(op && op.value) {
+          op.var_title = [op.value.length]
+        }
+        return op ? op : {}
       }
     },
      methods: {
@@ -51,13 +60,16 @@
       change(obj, event) {
         this.utils.conditionRulerTest(obj)
         this.$emit("valueChange", obj, event)
+      },
+      textChange() {
+        _obj.var_title = [_obj.value.length || 0]
       }
     }
   }
 </script>
 
 <style lang='scss'>
-.input-component {
+.customize-textarea-component {
   display: inline-block;
   position: relative;
   .is-error {

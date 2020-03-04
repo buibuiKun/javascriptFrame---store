@@ -1,10 +1,10 @@
 <template>
-	<div :class='["input-component", _obj.type]'
+	<div :class='["customize-input-component", _obj.type]'
     v-show='!_obj.show'> 
-    <condition-title-component
+    <condition-title-var-component
       v-if='!_obj.titleHide'
       :titleObj='_obj'
-    ></condition-title-component>
+    ></condition-title-var-component>
 		<el-input 
 			:class="{'is-error': _obj.ruleError}"
       :style='{width:_obj.v_wd + "%"}'
@@ -26,7 +26,7 @@
 
 <script>
   export default {
-    name: 'inputComponent',
+    name: 'customizeInputComponent',
     props:{
       options: {
         type: Object,
@@ -57,7 +57,7 @@
 </script>
 
 <style lang='scss'>
-.input-component {
+.customize-input-component {
   display: inline-block;
   position: relative;
   .is-error {

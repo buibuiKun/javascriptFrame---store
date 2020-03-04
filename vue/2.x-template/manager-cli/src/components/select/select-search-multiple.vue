@@ -1,22 +1,22 @@
 <template>
   <div :class='["select-search-multiple-component", _obj.type]' 
-    v-show='!_obj.config.show'> 
+    v-show='!_obj.show'> 
     <condition-title-component
-      v-if='!_obj.config.titleHide'
+      v-if='!_obj.titleHide'
       :titleObj='_obj'
     ></condition-title-component>
     <el-select 
-      :class="{'is-error': _obj.config.ruleError}"
-      :style='{width:_obj.config.v_wd}'
-      v-if='!_obj.config.valueComponentHide'
+      :class="{'is-error': _obj.ruleError}"
+      :style='{width:_obj.v_wd + "%"}'
+      v-if='!_obj.valueComponentHide'
       v-model.trim="_obj.value"
-      :multiple= '_obj.config.multiple'
+      :multiple= '_obj.multiple'
       @change='change(_obj, $event)'
       @visible-change='blur(_obj, $event)' 
       filterable
-      :disabled='_obj.config.disabled'
-      :clearable='_obj.config.clear' 
-      :placeholder="_obj.placeholder">
+      :disabled='_obj.disabled'
+      :clearable='_obj.clear' 
+      :placeholder="_obj.placeholder ? _obj.placeholder : '请选择' + _obj.title">
       <el-option
         v-for="item in list"
         :key="item.value"
@@ -26,8 +26,8 @@
       </el-option>
     </el-select>
     <form-ruler-error
-      v-if='_obj.config.ruleError'
-      :style="{left: _obj.config.t_wd}"
+      v-if='_obj.ruleError'
+      :style="{left: _obj.t_wd}"
       :options='_obj'>
     </form-ruler-error>
   </div>
@@ -75,7 +75,6 @@
 .select-search-multiple-component {
   display: inline-block;
   position: relative;
-  margin: 10px 0;
   .is-error {
     .el-input__inner {
       border-color: #f56c6c;
